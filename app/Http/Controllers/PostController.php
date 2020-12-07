@@ -14,4 +14,13 @@ class PostController extends Controller
 
         return view('blog-post', ['post'=>$post]);
     }
+
+    public function create(){
+        return view('admin.posts.create');
+    }
+
+    public function store(){
+        auth()->user(); // info Grabs the Users Information that is currently logged in
+        dd(request()->all());
+    }
 }
