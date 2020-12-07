@@ -13,32 +13,35 @@
                   <thead>
                     <tr>
                       <th>Id</th>
-                      <th>Title</th>
                       <th>Author</th>
-                      <th>Created</th>
+                      <th>Title</th>
                       <th>Image</th>
                       <th>Content</th>
+                      <th>Created on</th>
+                      <th>Updated on</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th>Id</th>
-                      <th>Title</th>
                       <th>Author</th>
-                      <th>Created</th>
+                      <th>Title</th>
                       <th>Image</th>
                       <th>Content</th>
+                      <th>Created on</th>
+                      <th>Updated on</th>
                     </tr>
                   </tfoot>
                   <tbody>
                       @foreach ($posts as $post)
-                          <tr>
+                    <tr>
                       <td>{{$post->id}}</td>
-                      <td>{{$post->title}}</td>
                       <td>{{$post->user->name}}</td>
-                      <td>{{$post->created_at->diffForHumans()}}</td>
+                      <td>{{$post->title}}</td>
                       <td><img src="{{$post->post_image}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></td>
                       <td>{{Str::limit($post->body, '150', '......')}}</td>
+                      <td>{{$post->created_at->diffForHumans()}}</td>
+                      <td>{{$post->updated_at->diffForHumans()}}</td>
                     </tr>
                       @endforeach
 
