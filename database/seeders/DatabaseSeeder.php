@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         //Post::factory(10)->create();
 
 
-     User::factory(10)->create()->each(function($user){
+     User::factory(25)->create()->each(function($user){
         $user->posts()->save(Post::factory()->make());
      });
     }

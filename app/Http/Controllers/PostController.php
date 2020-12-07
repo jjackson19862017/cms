@@ -34,4 +34,11 @@ class PostController extends Controller
         auth()->user()->posts()->create($inputs); // info Run in terminal 'php artisan storage:link'
         return back();
     }
+
+    public function index(){
+
+                // info To access our posts in the database we will set it into a variable
+        $posts = Post::all();
+        return view('admin.posts.index', ['posts'=>$posts]);
+    }
 }

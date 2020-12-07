@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,9 @@ Route::get('/post/{post}', [App\Http\Controllers\PostController::class, 'show'])
 // Info If anything needs authincating Ie Admin area.
 Route::middleware('auth')->group(function(){
     Route::get('/admin', [App\Http\Controllers\AdminsController::class, 'index'])->name('admin.index'); //info To make this controller type 'php artisan make:controller AdminsController' in the terminal
-    Route::get('/admin/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('post.create'); //info This allows users to create posts in the admin area
     Route::post('/admin/posts', [App\Http\Controllers\PostController::class, 'store'])->name('post.store'); //info This allows users to create posts in the admin area
+    Route::get('/admin/posts', [App\Http\Controllers\PostController::class, 'index'])->name('post.index');
+
+    Route::get('/admin/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('post.create'); //info This allows users to create posts in the admin area
+
 });
