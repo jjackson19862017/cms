@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // info To access our posts in the database we will set it into a variable
+        $posts = Post::all();
+        return view('home', ['posts'=>$posts]);
     }
 }
