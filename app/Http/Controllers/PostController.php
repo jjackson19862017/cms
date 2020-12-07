@@ -20,7 +20,18 @@ class PostController extends Controller
     }
 
     public function store(){
-        auth()->user(); // info Grabs the Users Information that is currently logged in
-        dd(request()->all());
+
+        $inputs = request()->validate([
+            'title'=>'required|min:8|max:255', // info Different rules need pipes!!!!
+            'post_image'=>'file',
+            'body'=>'required'
+        ]);
+
+        if(request('post_image')){
+            $inputs['post_image'] = request('post_image')->store('images');
+        }
+
+        auth()->user()->posts()->create($inputs); // info Run in terminal 'php artisan storage:link'
+        return back();
     }
 }
