@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class PostController extends Controller
@@ -19,7 +20,7 @@ class PostController extends Controller
         return view('admin.posts.create');
     }
 
-    public function store(){
+    public function store(Request $request){
 
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255', // info Different rules need pipes!!!!
@@ -32,7 +33,7 @@ class PostController extends Controller
         }
 
         auth()->user()->posts()->create($inputs); // info Run in terminal 'php artisan storage:link'
-        return back();
+        return back(); // Returns to previous page
     }
 
     public function index(){
