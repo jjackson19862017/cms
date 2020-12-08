@@ -10,6 +10,17 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     //
+    public function index(Request $request){
+        // info To create Policy's type 'php artisan make:policy PostPolicy --model=Post' in the terminal.
+
+        // info To access our posts in the database we will set it into a variable
+        $posts = Post::all();
+
+        //$posts = auth()->user()->posts;
+
+        return view('admin.posts.index', ['posts'=>$posts]);
+    }
+
     public function show(Post $post)
     {
 
@@ -38,14 +49,9 @@ class PostController extends Controller
         return redirect()->route('post.index');
     }
 
-    public function index(){
-
-                // info To access our posts in the database we will set it into a variable
-        $posts = Post::all();
-        return view('admin.posts.index', ['posts'=>$posts]);
-    }
-
     public function edit(Post $post){
+
+        $this->authorize('view', $post); // This stops users from editing other peoples Posts.
         return view('admin.posts.edit', ['post'=>$post]);
     }
 
@@ -61,11 +67,13 @@ class PostController extends Controller
             $post->post_image = $inputs['post_image'];
         }
 
+        $this->authorize('update', $post); // info Only Allows users to edit their own posts.
+
         $post->title = $inputs['title'];
         $post->body = $inputs['body'];
 
 
-        auth()->user()->posts()->save($post); // info This will update the user, so if it was someone elses post it would overwrite ownership, if you wanted to keep the original owner then just use this $post->save();
+        auth()->user()->posts()->save($post); // info This will update the user, so if it was someone else post it would overwrite ownership, if you wanted to keep the original owner then just use this $post->save();
 
         $request->session()->flash('message', 'Post with title of ' . $inputs['title'] . ' was updated...');
         return redirect()->route('post.index');

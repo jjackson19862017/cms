@@ -11,6 +11,10 @@ class Post extends Model
 
     // Allows Mass assignments.
     protected $guarded = [];
+    /**
+     * @var mixed
+     */
+    private $user_id;
 
     use HasFactory;
     // Info This creates a relationship with users

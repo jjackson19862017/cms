@@ -49,12 +49,13 @@
                       <td>{{$post->created_at->diffForHumans()}}</td>
                       <td>{{$post->updated_at->diffForHumans()}}</td>
                       <td>
+                          @can('view',$post) // Info Its like an if statement allowing a user to do something, see PostPolicy.php
                       <form action="{{route('post.destroy', $post->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
-
+                          @endcan
 
                       </td>
                     </tr>

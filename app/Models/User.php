@@ -43,6 +43,11 @@ class User extends Authenticatable
     ];
 
     // Info This tells makes the user have many posts relationship
+    /**
+     * @var mixed
+     */
+    private $id;
+
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
