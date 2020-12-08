@@ -33,7 +33,9 @@ class PostController extends Controller
         }
 
         auth()->user()->posts()->create($inputs); // info Run in terminal 'php artisan storage:link'
-        return back(); // Returns to previous page
+
+        $request->session()->flash('message', 'Post with title of ' . $inputs['title'] . ' was created...');
+        return redirect()->route('post.index'); // Returns to previous page
     }
 
     public function index(){

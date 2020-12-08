@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function(){
     Route::delete('/admin/posts/{post}', [App\Http\Controllers\PostController::class, 'destroy'])->name('post.destroy'); //info This allows users to create posts in the admin area
 
 
-    // Log out
+// Log out
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 });
