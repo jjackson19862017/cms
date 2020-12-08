@@ -41,7 +41,7 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->is($user); // Only allows logged in users to create posts.
     }
 
     /**
@@ -65,7 +65,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        //
+        return $user->id === $post->user_id;
     }
 
     /**

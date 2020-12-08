@@ -14,9 +14,9 @@ class PostController extends Controller
         // info To create Policy's type 'php artisan make:policy PostPolicy --model=Post' in the terminal.
 
         // info To access our posts in the database we will set it into a variable
-        $posts = Post::all();
+        //$posts = Post::all();
 
-        //$posts = auth()->user()->posts;
+        $posts = auth()->user()->posts;
 
         return view('admin.posts.index', ['posts'=>$posts]);
     }
@@ -28,10 +28,14 @@ class PostController extends Controller
     }
 
     public function create(){
+        $this->authorize('create', Post::class); // info Only Allows users logged in to create posts.
+
         return view('admin.posts.create');
     }
 
     public function store(Request $request){
+
+        $this->authorize('create', Post::class); // info Only Allows users logged in to store posts.
 
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255', // info Different rules need pipes!!!!
@@ -81,6 +85,7 @@ class PostController extends Controller
 
     public function destroy(Request $request, Post $post){
         $post->delete();
+        $this->authorize('delete', $post); // info Only Allows users to edit their own posts.
         $request->session()->flash('message', 'Post was Deleted...');
         return back();
     }
