@@ -43,8 +43,9 @@ class PostController extends Controller
         return view('admin.posts.index', ['posts'=>$posts]);
     }
 
-    public function destroy(Post $post){
+    public function destroy(Request $request, Post $post){
         $post->delete();
+        $request->session()->flash('message', 'Post was Deleted...');
         return back();
     }
 }
