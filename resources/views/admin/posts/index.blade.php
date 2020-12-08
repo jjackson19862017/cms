@@ -19,6 +19,7 @@
                       <th>Content</th>
                       <th>Created on</th>
                       <th>Updated on</th>
+                      <th>Delete</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -30,6 +31,7 @@
                       <th>Content</th>
                       <th>Created on</th>
                       <th>Updated on</th>
+                      <th>Delete</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -38,10 +40,19 @@
                       <td>{{$post->id}}</td>
                       <td>{{$post->user->name}}</td>
                       <td>{{$post->title}}</td>
-                      <td><img src="{{asset($post->post_image)}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></td>
+                      <td><img width="100px" src="{{asset($post->post_image)}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></td>
                       <td>{{Str::limit($post->body, '150', '......')}}</td>
                       <td>{{$post->created_at->diffForHumans()}}</td>
                       <td>{{$post->updated_at->diffForHumans()}}</td>
+                      <td>
+                      <form action="{{route('post.destroy', $post->id)}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+
+
+                      </td>
                     </tr>
                       @endforeach
 
@@ -64,6 +75,5 @@
   <!-- Page level custom scripts -->
   <script src="{{asset('js/datatables-scripts.js')}}"></script>
 @endsection
-
 
 </x-admin-master>
