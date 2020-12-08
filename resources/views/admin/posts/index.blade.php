@@ -38,7 +38,7 @@
                       <td>{{$post->id}}</td>
                       <td>{{$post->user->name}}</td>
                       <td>{{$post->title}}</td>
-                      <td><img src="{{$post->post_image}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></td>
+                      <td><img src="{{asset($post->post_image)}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></td>
                       <td>{{Str::limit($post->body, '150', '......')}}</td>
                       <td>{{$post->created_at->diffForHumans()}}</td>
                       <td>{{$post->updated_at->diffForHumans()}}</td>
