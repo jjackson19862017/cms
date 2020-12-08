@@ -43,7 +43,7 @@
                     <tr>
                       <td>{{$post->id}}</td>
                       <td>{{$post->user->name}}</td>
-                      <td>{{$post->title}}</td>
+                    <td><a href="{{route('post.edit', $post->id)}}">{{$post->title}}</a></td>
                       <td><img width="100px" src="{{asset($post->post_image)}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></td>
                       <td>{{Str::limit($post->body, '150', '......')}}</td>
                       <td>{{$post->created_at->diffForHumans()}}</td>

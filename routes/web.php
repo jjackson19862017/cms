@@ -33,7 +33,10 @@ Route::middleware('auth')->group(function(){
     Route::post('/admin/posts', [App\Http\Controllers\PostController::class, 'store'])->name('post.store'); //info This allows users to create posts in the admin area
     Route::get('/admin/posts', [App\Http\Controllers\PostController::class, 'index'])->name('post.index');
     Route::get('/admin/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('post.create'); //info This allows users to create posts in the admin area
-    Route::delete('/admin/posts/{post}', [App\Http\Controllers\PostController::class, 'destroy'])->name('post.destroy'); //info This allows users to create posts in the admin area
+
+    Route::get('/admin/posts/{post}/edit', [App\Http\Controllers\PostController::class, 'edit'])->name('post.edit'); //info This allows users to edit posts in the admin area
+    Route::delete('/admin/posts/{post}', [App\Http\Controllers\PostController::class, 'destroy'])->name('post.destroy'); //info This allows users to delete posts in the admin area
+    Route::patch('/admin/posts/{post}', [App\Http\Controllers\PostController::class, 'update'])->name('post.update'); //info This allows users to delete posts in the admin area
 
 
 // Log out
