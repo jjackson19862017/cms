@@ -68,7 +68,7 @@
           </div>
 
 
-
+          {{$posts->links()}} <!-- To Make the Pagination customizable type 'php artisan vendor:publish' -->
 
 @endsection
 
@@ -78,7 +78,7 @@
   <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
   <!-- Page level custom scripts -->
-  <script src="{{asset('js/datatables-scripts.js')}}"></script>
+  <!--<script src="{{asset('js/datatables-scripts.js')}}"></script>-->
 @endsection
 
 </x-admin-master>

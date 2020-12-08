@@ -16,8 +16,7 @@ class PostController extends Controller
         // info To access our posts in the database we will set it into a variable
         //$posts = Post::all();
 
-        $posts = auth()->user()->posts;
-
+        $posts = auth()->user()->posts()->paginate(10);
         return view('admin.posts.index', ['posts'=>$posts]);
     }
 
