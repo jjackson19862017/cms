@@ -38,8 +38,7 @@ Route::middleware('auth')->group(function(){
     Route::delete('/admin/posts/{post}', [App\Http\Controllers\PostController::class, 'destroy'])->name('post.destroy'); //info This allows users to delete posts in the admin area
     Route::patch('/admin/posts/{post}', [App\Http\Controllers\PostController::class, 'update'])->name('post.update'); //info This allows users to delete posts in the admin area
 
-
-// Log out
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    // User Profile
+    Route::get('/admin/users/{user}/profile', [App\Http\Controllers\UserController::class, 'show'])->name('user.profile.show'); //info Shows Users Profile
 
 });
