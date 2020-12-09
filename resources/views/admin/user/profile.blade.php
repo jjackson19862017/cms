@@ -9,16 +9,17 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     @csrf
                     <div>
-                    <img class="img-profile rounded-circle" width="100px" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                        <img class="img-profile rounded-circle" width="100px" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                     </div>
                     <div class="form-group">
                       <label for="ava">Avatar</label>
                       <input type="file" class="form-control-file" name="" id="" placeholder="" aria-describedby="fileHelpId">
                       <small id="fileHelpId" class="form-text text-muted">Help text</small>
                     </div>
+
                 <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId" placeholder="Enter your Name" value="{{$user->name}}">
+                  <label for="username">UserName</label>
+                  <input type="text" class="form-control" name="username" id="username" aria-describedby="helpId" placeholder="Enter your Name" value="{{$user->username}}">
                   <small id="helpId" class="form-text text-muted">Your Name</small>
                 </div>
 
