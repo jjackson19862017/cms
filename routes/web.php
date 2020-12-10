@@ -43,5 +43,6 @@ Route::middleware('auth')->group(function(){
     Route::put('/admin/users/{user}/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.profile.update'); //info Shows Users Profile
 
     Route::get('/admin/users/', [App\Http\Controllers\UserController::class, 'index'])->name('users.index'); //info Shows Users Profile
+    Route::delete('/admin/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy'); //info This allows users to delete users in the admin area
 
 });
