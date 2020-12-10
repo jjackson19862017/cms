@@ -33,4 +33,10 @@ class UserController extends Controller
         $user->update($inputs);
         return back();
     }
+
+    public function index()
+    {
+        $users = User::all();
+        return view('admin.user.index', ['users'=>$users]);
+    }
 }

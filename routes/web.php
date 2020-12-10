@@ -42,4 +42,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/admin/users/{user}/profile', [App\Http\Controllers\UserController::class, 'show'])->name('user.profile.show'); //info Shows Users Profile
     Route::put('/admin/users/{user}/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.profile.update'); //info Shows Users Profile
 
+    Route::get('/admin/users/', [App\Http\Controllers\UserController::class, 'index'])->name('users.index'); //info Shows Users Profile
+
 });
