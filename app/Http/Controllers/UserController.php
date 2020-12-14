@@ -42,7 +42,6 @@ class UserController extends Controller
 
     public function destroy(Request $request, User $user){
         $user->delete();
-        $this->authorize('delete', $user); // info Only Allows users to edit their own posts.
         $request->session()->flash('message', 'User was Deleted...');
         return back();
     }

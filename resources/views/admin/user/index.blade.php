@@ -53,11 +53,14 @@
                       <td>{{$user->updated_at->diffForHumans()}}</td>
                       <td>
 
-                      <form action="{{route('user.destroy', $user->id)}}" method="post" enctype="multipart/form-data">
+                        @if (auth()->user()->id <> $user->id) <!--info Stops User from deleting own account-->
+                            <form action="{{route('user.destroy', $user->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
                       </form>
+                        @endif
+
 
                       </td>
                     </tr>
