@@ -105,7 +105,23 @@
                   <tbody>
                       @foreach ($roles as $role)
                     <tr>
-                      <td><input type="checkbox" name="" id=""></td>
+                        <!-- Add these roles in tinker
+                        App\Models\Role::create(['name'=>'Manager','slug'=>'manager'])
+                        App\Models\Role::create(['name'=>'Author','slug'=>'author'])
+                        App\Models\Role::create(['name'=>'Subscriber','slug'=>'subscriber'])-->
+                      <td>
+                        <!-- Check to see if user as a role assigned to it -->
+                        <input type="checkbox"
+                            @foreach ($user->roles as $user_role)
+                                @if ($user_role->slug == $role->slug)
+                                    checked
+                                @endif
+                            @endforeach
+
+
+
+
+                        name="" id=""></td>
                       <td>{{$role->id}}</td>
                       <td>{{$role->name}}</td>
                       <td>{{$role->slug}}</td>
