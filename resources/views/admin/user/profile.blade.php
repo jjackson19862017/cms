@@ -68,6 +68,60 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Roles</h1>
+                <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-danger">
+                    @if (Session::has('message'))
+                    {{Session::get('message')}}
+                    @endif
+                </h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Options</th>
+                      <th>Id</th>
+                      <th>Name</th>
+                      <th>Slug</th>
+                      <th>Attach</th>
+                      <th>Detach</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Options</th>
+                      <th>Id</th>
+                      <th>Name</th>
+                      <th>Slug</th>
+                      <th>Attach</th>
+                      <th>Detach</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                      @foreach ($roles as $role)
+                    <tr>
+                      <td><input type="checkbox" name="" id=""></td>
+                      <td>{{$role->id}}</td>
+                      <td>{{$role->name}}</td>
+                      <td>{{$role->slug}}</td>
+                      <td><button type="button" class="btn btn-primary">Attach</button></td>
+                      <td><button type="button" class="btn btn-danger">Detach</button></td>
+                    </tr>
+                      @endforeach
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+            </div>
+        </div>
+
     @endsection
 
 </x-admin-master>

@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-
 class UserController extends Controller
 {
     //
     public function show(User $user)
     {
-        return view('admin.user.profile', ['user'=>$user]);
+
+        return view('admin.user.profile', ['user'=>$user, 'roles'=>Role::all()]);
     }
 
     public function update(User $user, Request $request)
