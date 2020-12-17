@@ -81,25 +81,22 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Options</th>
                       <th>Id</th>
                       <th>Name</th>
                       <th>Slug</th>
-                      <th>Attach</th>
-                      <th>Detach</th>
+                      <th>Options</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Options</th>
                       <th>Id</th>
                       <th>Name</th>
                       <th>Slug</th>
-                      <th>Attach</th>
-                      <th>Detach</th>
+                      <th>Options</th>
+
                     </tr>
                   </tfoot>
                   <tbody>
@@ -109,41 +106,36 @@
                         App\Models\Role::create(['name'=>'Manager','slug'=>'manager'])
                         App\Models\Role::create(['name'=>'Author','slug'=>'author'])
                         App\Models\Role::create(['name'=>'Subscriber','slug'=>'subscriber'])-->
-                      <td>
-                        <!-- Check to see if user as a role assigned to it -->
-                        <input type="checkbox"
-                            @foreach ($user->roles as $user_role)
-                                @if ($user_role->slug == $role->slug)
-                                    checked
-                                @endif
-                            @endforeach
 
-
-
-
-                        name="" id=""></td>
                       <td>{{$role->id}}</td>
-                      <td>{{$role->name}}</td>
+                      <td class="@if ($user->roles->contains($role))
+                        alert alert-success
+                        @else
+                        alert alert-danger
+                        @endif">{{$role->name}}</td>
                       <td>{{$role->slug}}</td>
                       <td>
-                        <form action="{{route('user.role.attach', $user->id)}}" method="post">
+                          @if (!$user->roles->contains($role))
+                            <form action="{{route('user.role.attach', $user->id)}}" method="post">
+                                @method('PUT')
+                                @csrf
+                                <div class="form-group">
+                                    <input type="hidden" name="role" id="role" value="{{$role->id}}">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Attach</button>
+                            </form>
+                          @else
+                            <form action="{{route('user.role.detach', $user->id)}}" method="post">
+                                @method('PUT')
+                                @csrf
+                                <div class="form-group">
+                                    <input type="hidden" name="role" id="role" value="{{$role->id}}">
+                                </div>
+                                <button type="submit" class="btn btn-danger">Detach</button>
+                            </form>
+                          @endif
 
-                          @method('PUT')
-                          @csrf
-                        <div class="form-group">
-                            <input type="hidden" name="role" id="role" value="{{$role->id}}">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Attach</button></form></td>
-
-                      <td>
-                          <form action="{{route('user.role.detach', $user->id)}}" method="post">
-                          @method('PUT')
-                          @csrf
-                        <div class="form-group">
-                            <input type="hidden" name="role" id="role" value="{{$role->id}}">
-                        </div>
-                        <button type="submit" class="btn btn-danger">Detach</button>
-                    </form></td>
+                         </td>
 
                     </tr>
                       @endforeach
