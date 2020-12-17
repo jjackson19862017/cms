@@ -46,4 +46,18 @@ class UserController extends Controller
         $request->session()->flash('message', 'User was Deleted...');
         return back();
     }
+
+    public function attach(User $user)
+    {
+        # Attach a role to a user
+        $user->roles()->attach(request ('role'));
+        return back();
+    }
+
+    public function detach(User $user)
+    {
+        # Detach a role to a user
+        $user->roles()->detach(request ('role'));
+        return back();
+    }
 }

@@ -125,8 +125,26 @@
                       <td>{{$role->id}}</td>
                       <td>{{$role->name}}</td>
                       <td>{{$role->slug}}</td>
-                      <td><button type="button" class="btn btn-primary">Attach</button></td>
-                      <td><button type="button" class="btn btn-danger">Detach</button></td>
+                      <td>
+                        <form action="{{route('user.role.attach', $user->id)}}" method="post">
+
+                          @method('PUT')
+                          @csrf
+                        <div class="form-group">
+                            <input type="hidden" name="role" id="role" value="{{$role->id}}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Attach</button></form></td>
+
+                      <td>
+                          <form action="{{route('user.role.detach', $user->id)}}" method="post">
+                          @method('PUT')
+                          @csrf
+                        <div class="form-group">
+                            <input type="hidden" name="role" id="role" value="{{$role->id}}">
+                        </div>
+                        <button type="submit" class="btn btn-danger">Detach</button>
+                    </form></td>
+
                     </tr>
                       @endforeach
 

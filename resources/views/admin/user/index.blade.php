@@ -44,7 +44,13 @@
                       @foreach ($users as $user)
                     <tr>
                       <td>{{$user->id}}</td>
-                      <td>{{$user->username}}</td>
+                      <td>
+                        @if (auth()->user()->userHasRole('Admin'))
+                            <a href="{{route('user.profile.show', $user)}}">{{$user->username}}</a>
+                        @else
+                            {{$user->username}}
+                        @endif
+                    </td>
                       <td>{{$user->name}}</td>
                       <td><img width="100px" src="{{asset($user->avatar)}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></td>
                       <td>{{$user->email}}</td>
