@@ -46,7 +46,7 @@
                   <tbody>
                     @foreach ($roles as $role)
                     <tr>
-                        <td>{{$role->name}}</td>
+                        <td><a href="{{route('roles.edit', $role->id)}}">{{$role->name}}</a></td>
                         <td>{{$role->slug}}</td>
                         <td><form action="{{route('role.destroy', $role->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
