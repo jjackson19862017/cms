@@ -8,7 +8,10 @@
                 @csrf
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId" placeholder="Name of Role">
+                  <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" aria-describedby="helpId" placeholder="Name of Role">
+                    @error('name')
+                        <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -32,23 +35,25 @@
                   <thead>
                     <tr>
                       <th>Name</th>
+                      <th>Slug</th>
                       <th>Delete</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th>Name</th>
+                      <th>Slug</th>
                       <th>Delete</th>
                     </tr>
                   </tfoot>
                   <tbody>
-
+                    @foreach ($roles as $role)
                     <tr>
-                        <td></td>
-                        <td></td>
+                        <td>{{$role->name}}</td>
+                        <td>{{$role->slug}}</td>
+                        <td><button type="button" class="btn btn-danger">Delete</button></td>
                     </tr>
-
-
+                    @endforeach
                   </tbody>
                 </table>
               </div>
