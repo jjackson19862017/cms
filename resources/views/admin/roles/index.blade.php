@@ -1,8 +1,73 @@
 <x-admin-master>
     @section('content')
         <h1 class="h3 mb-4 text-gray-800">Roles</h1>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <form action="{{route('role.store')}}" method="post">
+                @csrf
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId" placeholder="Name of Role">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+
+
+            </form>
+        </div>
+        <div class="col-sm-9">
+            <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-danger">
+                    @if (Session::has('message'))
+                    {{Session::get('message')}}
+                    @endif
+                </h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Name</th>
+                      <th>Delete</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
     @endsection
-
-
-
 </x-admin-master>
