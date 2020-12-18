@@ -56,16 +56,25 @@ class RoleController extends Controller
         $request->session()->flash('message', 'Nothing to Update...');
 
         }
-
-
-
         return redirect()->route('role.index');
     }
 
-    public function destroy(Request $request, Role $role){
-        $role->delete();
-        $request->session()->flash('message', 'Role was Deleted...');
-        return back();
-    }
+public function permission_attach(Role $role)
+{
+    $role->permissions()->attach(request('permission'));
+    return back();
+}
+
+public function permission_detach(Role $role)
+{
+    $role->permissions()->detach(request('permission'));
+    return back();
+}
+
+public function destroy(Request $request, Role $role){
+    $role->delete();
+    $request->session()->flash('message', 'Role was Deleted...');
+    return back();
+}
 
 }

@@ -27,41 +27,55 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Options</th>
                             <th>Id</th>
                             <th>Name</th>
                             <th>Slug</th>
                             <th>Delete</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Options</th>
+
                             <th>Id</th>
                             <th>Name</th>
                             <th>Slug</th>
                             <th>Delete</th>
+                            <th>Options</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         @foreach ($permissions as $permission)
                         <tr>
-                            <td> <div class="form-check">
-                          <label class="form-check-label">
 
-                            <input type="checkbox" class="form-check-input" name="" id="" value=""
-                            @foreach ($role->permissions as $role_permission)
-                            @if ($role_permission->slug == $permission->slug)
-                                checked
-                            @endif
-                              @endforeach>
-                          </label>
-                        </div></td>
 
                         <td>{{$permission->id}}</td>
-                        <td>{{$permission->name}}</td>
+                         <td class="@if ($role->permissions->contains($permission))
+                        alert alert-success
+                        @else
+                        alert alert-danger
+                        @endif">{{$permission->name}}</td>
                         <td>{{$permission->slug}}</td>
                         <td><button type="button" class="btn btn-danger">Delete</button></td>
+                        <td>@if (!$role->permissions->contains($permission))
+                            <form action="{{route('role.permission.attach', $permission->id)}}" method="post">
+                                @method('PUT')
+                                @csrf
+                                <div class="form-group">
+                                    <input type="hidden" name="permission" id="permission" value="{{$role->id}}">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Attach</button>
+                            </form>
+                          @else
+                            <form action="{{route('role.permission.detach', $permission->id)}}" method="post">
+                                @method('PUT')
+                                @csrf
+                                <div class="form-group">
+                                    <input type="hidden" name="permission" id="permission" value="{{$role->id}}">
+                                </div>
+                                <button type="submit" class="btn btn-danger">Detach</button>
+                            </form>
+                          @endif</td>
                         </tr>
                         @endforeach
 
