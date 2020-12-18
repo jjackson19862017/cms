@@ -15,9 +15,6 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
-
-
-
             </form>
         </div>
         <div class="col-sm-9">
@@ -51,7 +48,11 @@
                     <tr>
                         <td>{{$role->name}}</td>
                         <td>{{$role->slug}}</td>
-                        <td><button type="button" class="btn btn-danger">Delete</button></td>
+                        <td><form action="{{route('role.destroy', $role->id)}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                      </form></td>
                     </tr>
                     @endforeach
                   </tbody>

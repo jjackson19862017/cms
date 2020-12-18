@@ -33,4 +33,10 @@ class RoleController extends Controller
         return back();
     }
 
+    public function destroy(Request $request, Role $role){
+        $role->delete();
+        $request->session()->flash('message', 'Role was Deleted...');
+        return back();
+    }
+
 }
